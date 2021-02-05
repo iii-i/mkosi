@@ -658,6 +658,7 @@ def attach_image_loopback(args: CommandLineArguments, raw: Optional[BinaryIO]) -
         c = run(["losetup", "--find", "--show", "--partscan", raw.name],
                 stdout=PIPE, check=True)
         loopdev = c.stdout.decode("utf-8").strip()
+        run(["partprobe", loopdev])
         output.append(loopdev)
 
     try:
