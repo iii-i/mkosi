@@ -178,6 +178,7 @@ GPT_ROOT_X86_64        = uuid.UUID("4f68bce3e8cd4db196e7fbcaf984b709")  # NOQA: 
 GPT_ROOT_ARM           = uuid.UUID("69dad7102ce44e3cb16c21a1d49abed3")  # NOQA: E221
 GPT_ROOT_ARM_64        = uuid.UUID("b921b0451df041c3af444c6f280d3fae")  # NOQA: E221
 GPT_ROOT_IA64          = uuid.UUID("993d8d3df80e4225855a9daf8ed7ea97")  # NOQA: E221
+GPT_ROOT_S390X         = uuid.UUID("3b79ea62941f11e9abf62b5e0862dc0f")  # NOQA: E221
 GPT_ESP                = uuid.UUID("c12a7328f81f11d2ba4b00a0c93ec93b")  # NOQA: E221
 GPT_BIOS               = uuid.UUID("2168614864496e6f744e656564454649")  # NOQA: E221
 GPT_SWAP               = uuid.UUID("0657fd6da4ab43c484e50933c84b4f4f")  # NOQA: E221
@@ -189,6 +190,7 @@ GPT_ROOT_X86_64_VERITY = uuid.UUID("2c7357edebd246d9aec123d437ec2bf5")  # NOQA: 
 GPT_ROOT_ARM_VERITY    = uuid.UUID("7386cdf2203c47a9a498f2ecce45a2d6")  # NOQA: E221
 GPT_ROOT_ARM_64_VERITY = uuid.UUID("df3300ced69f4c92978c9bfb0f38d820")  # NOQA: E221
 GPT_ROOT_IA64_VERITY   = uuid.UUID("86ed10d5b60745bb8957d350f23d0571")  # NOQA: E221
+GPT_ROOT_S390X_VERITY  = uuid.UUID("59538638941f11e98fd9bf41e3b75423")  # NOQA: E221
 
 # This is a non-formatted partition used to store the second stage
 # part of the bootloader because it doesn't necessarily fits the MBR
@@ -235,6 +237,8 @@ def gpt_root_native(arch: str) -> GPTRootTypePair:
         return GPTRootTypePair(GPT_ROOT_X86_64, GPT_ROOT_X86_64_VERITY)
     elif arch == 'aarch64':
         return GPTRootTypePair(GPT_ROOT_ARM_64, GPT_ROOT_ARM_64_VERITY)
+    elif arch == 's390x':
+        return GPTRootTypePair(GPT_ROOT_S390X, GPT_ROOT_S390X_VERITY)
     else:
         die(f'Unknown architecture {arch}.')
 
