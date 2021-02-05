@@ -1667,7 +1667,7 @@ def install_debian_or_ubuntu(args: CommandLineArguments,
     cmdline = ["debootstrap",
                "--verbose",
                "--variant=minbase",
-               "--include=systemd-sysv",
+               "--include=eatmydata,systemd-sysv",
                "--exclude=sysv-rc,initscripts,startpar,lsb-base,insserv",
                "--components=" + ','.join(repos)]
 
@@ -1751,7 +1751,7 @@ def install_debian_or_ubuntu(args: CommandLineArguments,
         with open(dpkg_conf, "w") as f:
             f.writelines(f'path-exclude {d}/*\n' for d in doc_paths)
 
-    cmdline = ["/usr/bin/apt-get", "--assume-yes", "--no-install-recommends", "install"] + extra_packages
+    cmdline = ["/usr/bin/eatmydata", "/usr/bin/apt-get", "--assume-yes", "--no-install-recommends", "install"] + extra_packages
     env = {
         'DEBIAN_FRONTEND': 'noninteractive',
         'DEBCONF_NONINTERACTIVE_SEEN': 'true',
